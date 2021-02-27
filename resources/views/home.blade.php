@@ -1,7 +1,23 @@
-<h1> Home, Opção loggout, ver o perfil, agendar consulta, olhar agendamento.</h1>
+@extends('layouts.app')
 
-<p>corpo do texto: Uma introdução</p>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-<h1>E sobre os procedimentos odontológicos
-rodapé:email,  número, nome da clínica e  endereço.</h1>
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
