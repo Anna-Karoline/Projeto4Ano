@@ -18,8 +18,9 @@ class CreateAgendamentosTable extends Migration
             $table->dateTime('AGE_DATAIN');
             $table->dateTime('AGE_DATAFI');
             $table->Boolean('AGE_DISPONIVEL');
-            $table->unsignedBigInteger('AGE_USE_CODIGO')->unsigned();
-            $table->foreign('AGE_USE_CODIGO')->references('id')->on('users');
+            $table->unsignedBigInteger('AGE_USE_CODIGO')->unsigned()->nullable();
+            $table->foreign('AGE_USE_CODIGO')->references('id')->on('users')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
