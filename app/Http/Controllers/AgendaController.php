@@ -29,6 +29,14 @@ class AgendaController extends Controller
         $age->update(['AGE_USE_CODIGO' => Auth::user()->id]);
         return redirect()->route('horarios');
     }
+
+    public function destroy($id){
+        $horario = Agendamento::find($id);
+        if(!$horario)
+            return redirect()->back();
+        $horario->delete();
+        return redirect()->route('home');
+    }
     public function store(Request $request){
         $colisao = false;
         $horarios = Agendamento::get();

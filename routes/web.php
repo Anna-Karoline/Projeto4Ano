@@ -14,10 +14,12 @@ use App\Http\Controllers\AgendaController;
 */
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [AgendaController::class, 'index'])->name('home');
+    Route::get('/perfil', [AgendaController::class, 'perfil'])->name('perfil');
     Route::post('/create', [AgendaController::class, 'store'])->name('store_horario');
     Route::get('/create', [AgendaController::class, 'create'])->name('create_horario');
     Route::get('/horarios', [AgendaController::class, 'lista_horarios'])->name('horarios');
     Route::post('/horarios', [AgendaController::class, 'agendar'])->name('agendar_horario');
+    Route::delete('/horarios/{id}', [AgendaController::class, 'destroy'])->name('destroy_horario');
 });
 
 Auth::routes();

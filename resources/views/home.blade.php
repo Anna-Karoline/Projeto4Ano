@@ -11,14 +11,18 @@
         @elseif($user->admin == true)
             <ul>
                 @foreach ($horarios as $horario)
-                    <form action="{{ route('agendar_horario') }}" Method="POST">
-                        @csrf
                         <li>{{ $horario->AGE_DATAIN }}</li>
                         <li>{{ $horario->AGE_DATAFI }}</li>
                         @if($horario->AGE_USE_CODIGO != null)
                             <li><a href="#"> detalhar </a></li>
                         @endif
-                    </form>
+                        <form action="{{ route('destroy_horario', $horario->AGE_CODIGO) }}"
+                        method = "POST">
+                        @csrf
+                        @method('DELETE')
+                        <li>
+                            <button type="submit"> Excluir </button>
+                        </li>
                 @endforeach
             </ul>
         @endif
