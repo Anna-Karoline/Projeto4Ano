@@ -23,7 +23,14 @@
                         <th>{{ date('d-m-Y', strtotime($horario->AGE_DATAIN)) }}</th>
                         <th>{{ substr($horario->AGE_DATAIN, 10, 6) }}</th>
                         <th>{{ substr($horario->AGE_DATAFI, 10, 6) }}</th>
-                        <input type="hidden" name="age_codigo" value="{{ $horario->AGE_CODIGO }}">
+                        <th>
+                            <form action="{{ route('desmarcar_horario') }}"method="POST">
+                                @csrf
+                                <input type="hidden" name="age_codigo" value="{{ $horario->AGE_CODIGO }}">
+                                <button type="submit" class="btn btn-primary">
+                                    Desmarcar
+                                </button>
+                            </form>
                         <th>
 
                     </tr>

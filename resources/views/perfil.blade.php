@@ -5,6 +5,9 @@
 <div class=" card shadow mb-4 ">
     <div class=" card-header py-3 ">
         <h6 class=" m-0 font-weight-bold text-primary "> Perfil do Administrador </h6>
+        @if (Session::has('message'))
+        <div class="alert alert-info">{{ Session::get('message') }}</div>
+        @endif
     </div>
     <div class=" card-body ">
         <form action="?" method="POST">
@@ -25,6 +28,18 @@
                 <label for="inputAddress2">Endereço</label>
                 <input type="text" class="form-control" id="inputAddress2" placeholder="São Paulo, 75"
                 name="endereco" value="{{ $user->endereco }}" disabled="true">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-6">
+                    <label for="inputEmail4">Senha</label>
+                    <input type="password" class="form-control" 
+                    name="password"  disabled="true" maxlength="14">
+                </div>
+                <div class="form-group col-6">
+                    <label for="inputEmail4">Confirma senha</label>
+                    <input type="password" class="form-control" 
+                    name="passwordComfirmed"  disabled="true" maxlength="14">
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-6">

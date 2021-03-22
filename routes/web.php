@@ -26,8 +26,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/create', [AgendaController::class, 'store'])->name('store_horario');
     Route::get('/create', [AgendaController::class, 'create'])->name('create_horario');
     Route::get('/horarios', [AgendaController::class, 'lista_horarios'])->name('horarios');
+    Route::get('/todosHorarios', [AgendaController::class, 'todos_horarios'])->name('todos_horarios');
     Route::get('/horariosUser', [AgendaController::class, 'user_horarios'])->name('user_horarios');
     Route::post('/horarios', [AgendaController::class, 'agendar'])->name('agendar_horario');
+    Route::post('/Dhorarios', [AgendaController::class, 'desmarcar'])->name('desmarcar_horario');
+    Route::any('/searchHorarios', [AgendaController::class, 'search_horarios'])->name('search_horarios');
     Route::delete('/horarios/{id}', [AgendaController::class, 'destroy'])->name('destroy_horario');
     #procedimentos
     Route::get('/createProcedimento', [AgendaController::class, 'createProcedimento'])

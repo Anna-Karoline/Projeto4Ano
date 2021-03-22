@@ -29,7 +29,7 @@
                 @if($msg != "")
                     <div class="form-row">
                         <div class="form-group col-md-7">
-                           {{$msg}}
+                           <p class="text-danger">{{$msg}}</p>
                         </div>
                     </div>
                 @endif
