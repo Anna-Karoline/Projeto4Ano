@@ -21,6 +21,9 @@ class CreateAgendamentosTable extends Migration
             $table->unsignedBigInteger('AGE_USE_CODIGO')->unsigned()->nullable();
             $table->foreign('AGE_USE_CODIGO')->references('id')->on('users')
             ->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('AGE_PRO_CODIGO')->unsigned()->nullable();
+            $table->foreign('AGE_PRO_CODIGO')->references('id')->on('procedimentos')
+            ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
