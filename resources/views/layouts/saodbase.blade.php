@@ -150,6 +150,7 @@
 
                         <h6 class="collapse-header"> </h6>
                         @if( Auth::user()->admin)
+                        <a class="collapse-item" href="{{route('home')}}">Visualizar Consultas</a>
                         <a class="collapse-item" href="{{route('create_horario')}}">Cadastrar Consulta</a>
                         <a class="collapse-item" href="{{route('create_procedimento')}}">Cadastrar Procedimentos</a>
                         <a class="collapse-item" href="{{route('procedimentos')}}">Visualizar Procedimentos</a>
@@ -196,7 +197,7 @@
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Cadastrar Administrador</a>
+                        <a class="collapse-item" href="{{ route('register_admin') }}">Cadastrar Administrador</a>
                         <a class="collapse-item" href="{{route('perfil')}}">Visualizar Perfil</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf

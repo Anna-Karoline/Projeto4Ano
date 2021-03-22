@@ -3,7 +3,23 @@
 @section('content')
 <div class=" card shadow mb-4 ">
     <div class=" card-header py-3 ">
-        <h6 class=" m-0 font-weight-bold text-primary "> Consultas </h6>
+        <h6 class=" m-0 font-weight-bold text-primary "> Tabela de Consultas </h6>
+        <p></p>
+        <div>
+            
+            <form action="{{ route('search_horarios')}}" meethod="POST">
+                @csrf
+                <div class="form-group col-md-6">
+                    <label for="Dproc">Pesquisar uma consulta</label>
+                    <input type="date" required class="form-control" name="filter">
+                </div>
+                <div class="form-group col-md-4">
+                    <button type="submit" class="btn btn-primary form-control">
+                        Pesquisar
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
     <div class=" card-body ">
         <div class="table-responsive">

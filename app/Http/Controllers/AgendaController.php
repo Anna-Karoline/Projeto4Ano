@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Agendamento;
 use App\Models\Procedimentos;
 use Auth;
+use Session;
 Use \Carbon\Carbon;
 
 class AgendaController extends Controller
@@ -14,10 +15,15 @@ class AgendaController extends Controller
 
     public function index(){
         $user = Auth::user();
-        $dataA = Carbon::now("America/Sao_Paulo")->toDateTimeString();
-        $horarios = Agendamento::where('AGE_DATAIN','>=', $dataA)->get();
-        
+        $dataAtual = Carbon::now("America/Sao_Paulo")->toDateTimeString();
+        $filter = date('Y-m-d', strtotime($dataAtual));
+        $horarios = Agendamento::where('AGE_DATAIN','>=', $filter)->orderBy('AGE_DATAIN', 'asc')->get();
         return view('home', compact('user','horarios'));
+    }
+    public function todos_horarios(){
+        $user = Auth::user();
+        $horarios = Agendamento::get();
+        return view('home', compact('horarios','user'));
     }
     public function perfil(){
         $user = Auth::user();
@@ -29,6 +35,12 @@ class AgendaController extends Controller
             ["AGE_USE_CODIGO", '=', null],
             ["AGE_DATAIN", '>=', $dataA]
         ])->orderBy('AGE_DATAIN', 'asc')->get();
+        $procedimentos = Procedimentos::get();
+        return view('user.horario', compact('horarios','procedimentos'));
+    }
+    public function search_horarios(Request $request){
+        $filter = date('Y-m-d', strtotime($request->filter));
+        $horarios = Agendamento::where("AGE_DATAIN", "LIKE", '%'.$filter.'%')->get();
         $procedimentos = Procedimentos::get();
         return view('user.horario', compact('horarios','procedimentos'));
     }
@@ -49,16 +61,41 @@ class AgendaController extends Controller
         $codigo = (int)$request->age_codigo;
         $age = Agendamento::where("AGE_CODIGO", '=', $codigo)->first();
         #$age = Agendamento:
+        if(!$age)
+            return redirect()->back();
         $age->update(['AGE_USE_CODIGO' => Auth::user()->id,
         'AGE_PRO_CODIGO'  => $request->AGE_PRO_CODIGO]);
-        return redirect()->route('horarios');
+        return redirect()->route('user_horarios');
+    }
+    public function desmarcar(Request $request){
+        $codigo = (int)$request->age_codigo;
+        $age = Agendamento::where("AGE_CODIGO", '=', $codigo)->first();
+        #$age = Agendamento:
+        if(!$age)
+            return redirect()->back();
+        $age->update(['AGE_USE_CODIGO' => null,
+        'AGE_PRO_CODIGO'  => null]);
+        return redirect()->route('user_horarios');
     }
     public function updateUser(Request $request){
         $use = User::find(Auth::user()->id);
         #$age = Agendamento:
-        $use->update(['name' => $request->name, 'endereço' => $request->endereco,
-        'telefone' => $request->telefone, 'cpf' => $request->cpf]);
+        
+        if($request->password != ""){
+            if($request->password == $request->passwordComfirmed){
+                $use->update(['name' => $request->name, 'endereço' => $request->endereco,
+                'telefone' => $request->telefone, 'cpf' => $request->cpf,
+                'password' => bcrypt($request->password)]);
+            }else{
+                Session::flash('message', "Erro: As senhas não são iguais");
+            }
+        }else{
+            $use->update(['name' => $request->name, 'endereço' => $request->endereco,
+            'telefone' => $request->telefone, 'cpf' => $request->cpf]);
+            
+        }
         return redirect()->route('perfil');
+        
     }
 
     public function destroy($id){
@@ -76,12 +113,13 @@ class AgendaController extends Controller
         $datain= date('Y-m-d G:i:s', strtotime($data1));
         $datafi = date('Y-m-d G:i:s', strtotime($data2));
         foreach($horarios as $horario){
-            #if(($datafi > $horario->AGE_DATAIN) and (strtotime($datafi)
-             #> strtotime($horario->AGE_DATAFI)))
-              #  dd('entrou');
-            if(($datain > $horario->AGE_DATAIN and $datain < $horario->AGE_DATAFI)
-                or ($datafi > $horario->AGE_DATAIN and $datafi < $horario->AGE_DATAFI)
-                or ($datain < $horario->AGE_DATAIN and $datafi > $horario->AGE_DATAFI))
+            if(
+                (strtotime($datain) > strtotime($horario->AGE_DATAIN)
+                and strtotime($datain) < strtotime($horario->AGE_DATAFI))
+                or (strtotime($datafi) > strtotime($horario->AGE_DATAIN)
+                and strtotime($datafi) < strtotime($horario->AGE_DATAFI))
+                or (strtotime($datain) < strtotime($horario->AGE_DATAIN)
+                and strtotime($datafi) > strtotime($horario->AGE_DATAFI)))
                 $colisao = true;
         }
         if(!$colisao and (strtotime($datain) < strtotime($datafi))){
@@ -108,7 +146,7 @@ class AgendaController extends Controller
                 $data = $request->only('AGE_DATAIN', 'AGE_DATAFI', 'AGE_DISPONIVEL');
                 Agendamento::create($data);
             }
-            return redirect()->route('horarios');
+            return redirect()->route('home');
         }
         $msg="já existe um horario nesse intervalo ou a Data final é menor do que a data inicial";
         return view('admin.criarHorario', compact('msg'));
