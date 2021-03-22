@@ -15,5 +15,12 @@ class Agendamento extends Model
         'AGE_DATAFI',
         'AGE_DISPONIVEL',
         'AGE_USE_CODIGO',
+        'AGE_PRO_CODIGO',
     ];
+    public function procedimento(){
+        return $this->belongsTo(Procedimentos::class, 'AGE_PRO_CODIGO');
+    }
+    public function usuario(){
+        return $this->belongsTo(User::class, 'AGE_USE_CODIGO');
+    }
 }
