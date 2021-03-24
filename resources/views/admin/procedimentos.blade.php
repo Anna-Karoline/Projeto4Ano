@@ -20,7 +20,7 @@
                     @foreach ($procedimentos as $procedimento)
                     <tr>
                         <th>{{ $procedimento->name }}</th>
-                        <th>{{ $procedimento->descricao }}</th>
+                        <th>{{ substr($procedimento->descricao, 0, 30)}}..</th>
                         <th>{{ $procedimento->preco }}</th>
                         <th>
                             <form action="{{ route('destroy_procedimento', $procedimento->id) }}" method="POST">
@@ -32,7 +32,6 @@
                                 <a href="{{ route('editar_procedimento', $procedimento->id) }}"
                                 class="btn btn-danger">Editar</a>
                             </form>
-                            
                         </th>
                     </tr>
                     @endforeach
