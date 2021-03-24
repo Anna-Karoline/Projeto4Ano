@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreAdminRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Session;
 class AdminController extends Controller
 {
     public function store(StoreAdminRequest $request){
@@ -19,6 +19,7 @@ class AdminController extends Controller
             'cpf' => $request['cpf'],
             'endereco' => $request['endereco'],
         ]);
+        Session::flash('message', "Administrador cadastrado com sucesso!");
         return redirect()->route('home');
     }
     public function register(){

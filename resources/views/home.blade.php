@@ -81,6 +81,9 @@
             <h6 class=" m-0 font-weight-bold text-primary "> Consultas </h6>
             <p></p>
             <a href="{{ route('todos_horarios') }}"> Visualizar todos os horarios</a>
+            @if (Session::has('message'))
+                <div class="alert alert-info">{{ Session::get('message') }}</div>
+            @endif
         </div>
         <div class=" card-body ">
             <div class="table-responsive">

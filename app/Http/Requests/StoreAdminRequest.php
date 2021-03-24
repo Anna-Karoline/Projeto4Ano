@@ -27,9 +27,9 @@ class StoreAdminRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'telefone' => ['required', 'string', 'min:11','max:12'],
+            'telefone' => ['required', 'string', 'min:11'],
             'cpf'  => ['required', 'string', 'min:11', 'max:14'],
-            'endereco' => ['required', 'string'],
+            'endereco' => ['required', 'string', 'max:255'],
         ];
     }
     public function messages()
@@ -39,12 +39,11 @@ class StoreAdminRequest extends FormRequest
             'email.requered' => "Email é obrigatório",
             'email.unique' => "Esse email já está em uso",
             'telefone.requered' => "Telefone é obrigatório",
-            'telefone.min' => "Numero com  mais de 11 caracteres",
-            'telefone.max' => "Numero com  menos de 12 caracteres",
+            'telefone.min' => "Necessário numero com  mais de 11 caracteres",
             'cpf.requered' => "CPF é obrigatório",
             'cpf.min' => "Necessário CPF com  mais de 11 caracteres",
             'cpf.max' => "Necessário CPF com  menos de 14 caracteres",
-            'endereco.requered' => "O edereço é obrigatório é obrigatório",
+            'endereco.requered' => "O edereço é obrigatório,
 
             
         ];

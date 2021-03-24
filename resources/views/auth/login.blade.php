@@ -77,28 +77,9 @@
                                             @enderror
 
                                         </div>
-
-                                        <div class="form-group">
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                                <label class="form-check-label" for="remember">
-                                                    {{ __('Remember Me') }}
-                                                </label>
-                                            </div>
-
-                                        </div>
                                         <button type="submit" class="btn btn-primary btn-block">
                                             {{ __('Entrar') }}
                                         </button>
-                                        @if (Route::has('password.request'))
-                                        <center>
-                                            <a class="nav-link" href="{{ route('password.request') }}">
-                                                {{ __('Esqueceu a senha?') }}
-                                            </a>
-                                        </center>
-                                        @endif
                                         <center><a class="nav-link" href="{{route('register')}}">Cadastra-se</a></center>
                                 </div>
                             </div>

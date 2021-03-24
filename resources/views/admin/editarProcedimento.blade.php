@@ -14,22 +14,38 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="Nomeproc">Nome</label>
-                    <input required type="text" class="form-control" value="{{ $procedimento->name }}" 
+                    <input required type="text" class="form-control @error('name') is-invalid @enderror"
+                    value="{{ $procedimento->name }}" 
                     placeholder="Limpeza" name="name">
+                    @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
                 <div class="form-group col-md-6">
                     <label for="Pproc">Preço R$</label>
                     <input required type="number" step="0.01" name="preco" value="{{ $procedimento->preco }}"
-                    class="form-control" id="Pproc" placeholder="5">
+                    class="form-control @error('preco') is-invalid @enderror" id="Pproc" placeholder="5">
+                    @error('preco')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
             <div class="form-group">
                 <label for="Dproc">descricao do procedimento</label>
-                <input required type="text" class="form-control" id="Dproc" value="{{ $procedimento->descricao }}"
+                <input required type="text" class="form-control @error('descricao') is-invalid @enderror" id="Dproc" value="{{ $procedimento->descricao }}"
                 placeholder="Esse procedimento tem como intuito.." name="descricao">
+                @error('descricao')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Cadastrar</button>
+                <button class="btn btn-primary" type="submit">Editar</button>
             </div>
         </form>
     </div>
