@@ -24,7 +24,7 @@
 
     <script src="{{ asset('vendor/jquery/jquery.js')}}" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="hhttps://cdnjs.com/libraries/jquery.mask"></script>
+    <script src="https://cdnjs.com/libraries/jquery.mask"></script>
 
 </head>
 

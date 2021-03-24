@@ -83,9 +83,9 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="cpf" class="col-md-4 col-form-label text-md-right">CPF</label>
-
                                     <div class="col-md-6">
-                                        <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" required autocomplete="cpf" value="{{ old('cpf') }}">
+                                        <input id="cpf" type="text" class="form-control" name="cpf" required autocomplete="cpf"
+                                        placeholder="000.000.000-00" maxlength="14" minlength="11">
                                         @error('cpf')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -97,19 +97,15 @@
                                     <label class="col-md-4 col-form-label text-md-right">Telefone</label>
 
                                     <div class="col-md-6">
-                                        <input id="telefone" type="text" class="form-control  @error('telefone') is-invalid @enderror" name="telefone" required autocomplete="telefone" value="{{ old('telefone') }}">
-                                        @error('telefone')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                        <input id="telefone" type="text" class="form-control" name="telefone" required autocomplete="telefone" placeholder="(84) 9655-4010" maxlength="14" onkeypress="mask(this,tel)">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-4 col-form-label text-md-right">Endereço</label>
 
                                     <div class="col-md-6">
-                                        <input id="endereco" type="text" class="form-control" name="endereco" required autocomplete="endereco">
+                                        <input id="endereco" type="text" class="form-control" name="endereco"
+                                        placeholder="Estado, cidade, bairro, rua, numero" required autocomplete="endereco">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -149,6 +145,47 @@
         </div>
     </div>
 </body>
+
+
+<script type="text/javascript">
+    function mask(o, f) {
+        v_obj = o
+        v_fun = f
+        setTimeout("execmascara()", 1)
+    }
+
+    function execmascara() {
+        v_obj.value = v_fun(v_obj.value)
+    }
+
+
+
+    function tel(v) {
+        v = v.replace(/\D/g, "") //Remove tudo o que n�o � d�gito
+        v = v.replace(/^(\d{2})(\d)/g, "($1) $2") //Coloca par�nteses em volta dos dois primeiros d�gitos
+        v = v.replace(/(\d)(\d{4})$/, "$1-$2") //Coloca h�fen entre o quarto e o quinto d�gitos
+        return v
+    }
+
+
+    function cpf(v) {
+        v = v.replace(/\D/g, "") //Remove tudo o que não é dígito
+        v = v.replace(/(\d{3})(\d)/, "$1.$2") //Coloca um ponto entre o terceiro e o quarto dígitos
+        v = v.replace(/(\d{3})(\d)/, "$1.$2") //Coloca um ponto entre o terceiro e o quarto dígitos
+        //de novo (para o segundo bloco de números)
+        v = v.replace(/(\d{3})(\d{1,2})/, "$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
+        return v
+    }
+</script>
+<script>
+    var options = {
+        onKeyPress: function() {
+            var masks = ['000.000.000-00'];
+            $('#cpf').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+        }
+    }
+    $('#cpf').length > 11 ? $('#cpf').mask('00.000.000-00', options) : $('#cpf').mask('000.000.000-00', options);
+</script>
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js')  }}"></script>

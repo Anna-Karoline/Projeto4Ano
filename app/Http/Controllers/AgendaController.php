@@ -108,7 +108,7 @@ class AgendaController extends Controller
         if ($request->password != "") {
             if ($request->password == $request->passwordComfirmed) {
                 $use->update([
-                    'name' => $request->name, 'endereço' => $request->endereco,
+                    'name' => $request->name, 'endereco' => $request->endereco,
                     'telefone' => $request->telefone, 'cpf' => $request->cpf,
                     'password' => bcrypt($request->password)
                 ]);
@@ -117,7 +117,7 @@ class AgendaController extends Controller
             }
         } else {
             $use->update([
-                'name' => $request->name, 'endereço' => $request->endereco,
+                'name' => $request->name, 'endereco' => $request->endereco,
                 'telefone' => $request->telefone, 'cpf' => $request->cpf
             ]);
         }
@@ -157,32 +157,41 @@ class AgendaController extends Controller
                     $colisao = true;
             }
             if (!$colisao and (strtotime($datain) < strtotime($datafi))) {
-                if ($request->post('intervalo') != null) {
-                    $dataCalculoIN = date_create($data1);
-                    $dataCalculoFI = date_create($data2);
-                    $resultado = date_diff($dataCalculoIN, $dataCalculoFI);
-                    $minutos = $resultado->d * 1440;
-                    $minutos = $minutos + ($resultado->h * 60);
-                    $minutos = $minutos + ($resultado->i);
-                    #date('d/m/Y', strtotime($data. ' + 2 days'));
-                    #floor(7.3);
-                    #$minutos = date_interval_format($resultado, '%i');
-                    $intervalo = (int)$request->post('intervalo');
-                    $repetir = (int)floor((float)($minutos / $intervalo));
-                    for ($i = 0; $i < $repetir; $i++) {
-                        $age = new Agendamento;
-                        $age->AGE_DATAIN = date('Y-m-d G:i:s', strtotime($datain . ' + ' . ($i * $intervalo) . ' minutes'));
-                        $age->AGE_DATAFI = date('Y-m-d G:i:s', strtotime($datain . ' + ' . ($i + 1) * $intervalo . ' minutes'));
-                        $age->AGE_DISPONIVEL = $request->AGE_DISPONIVEL;
-                        $age->save();
+                $datain1 =  date('Y-m-d', strtotime($datain));
+                $datafi1 = date('Y-m-d', strtotime($datafi));
+                if(strtotime($datain1) == strtotime($datafi1)){
+                    if ($request->post('intervalo') != null) {
+                        $dataCalculoIN = date_create($data1);
+                        $dataCalculoFI = date_create($data2);
+                        $resultado = date_diff($dataCalculoIN, $dataCalculoFI);
+                        $minutos = $resultado->d * 1440;
+                        $minutos = $minutos + ($resultado->h * 60);
+                        $minutos = $minutos + ($resultado->i);
+                        #date('d/m/Y', strtotime($data. ' + 2 days'));
+                        #floor(7.3);
+                        #$minutos = date_interval_format($resultado, '%i');
+                        $intervalo = (int)$request->post('intervalo');
+                        $repetir = (int)floor((float)($minutos / $intervalo));
+                        for ($i = 0; $i < $repetir; $i++) {
+                            $age = new Agendamento;
+                            $age->AGE_DATAIN = date('Y-m-d G:i:s', strtotime($datain . ' + ' . ($i * $intervalo) . ' minutes'));
+                            $age->AGE_DATAFI = date('Y-m-d G:i:s', strtotime($datain . ' + ' . ($i + 1) * $intervalo . ' minutes'));
+                            $age->AGE_DISPONIVEL = $request->AGE_DISPONIVEL;
+                            $age->save();
+                        }
+                    } else {
+                        $data = $request->only('AGE_DATAIN', 'AGE_DATAFI', 'AGE_DISPONIVEL');
+                        Agendamento::create($data);
                     }
-                } else {
-                    $data = $request->only('AGE_DATAIN', 'AGE_DATAFI', 'AGE_DISPONIVEL');
-                    Agendamento::create($data);
+                    return redirect()->route('home');
+                
+                
+                }else{
+                    $msg = "Um horário não pode ser em dias diferentes";
                 }
-                return redirect()->route('home');
+            }else{
+                $msg = "já existe um horario nesse intervalo ou a Data final é menor do que a data inicial";
             }
-            $msg = "já existe um horario nesse intervalo ou a Data final é menor do que a data inicial";
             return view('admin.criarHorario', compact('msg'));
         } else {
             return redirect()->route('home');
@@ -224,7 +233,7 @@ class AgendaController extends Controller
             return redirect()->back();
         return view('admin.editarProcedimento', compact('procedimento'));
     }
-    public function updateProcedimento(Request $request, $id)
+    public function updateProcedimento(StoreUpdateProcedimentoRequest $request, $id)
     {
         $procedimento = Procedimentos::find($id);
         if (!$procedimento)
