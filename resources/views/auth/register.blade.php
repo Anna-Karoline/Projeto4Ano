@@ -83,8 +83,9 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="cpf" class="col-md-4 col-form-label text-md-right">CPF</label>
+
                                     <div class="col-md-6">
-                                        <input id="cpf" type="text" class="form-control @error('email') is-invalid @enderror" name="cpf" required autocomplete="cpf" value="{{ old('email') }}">
+                                        <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" required autocomplete="cpf" value="{{ old('cpf') }}">
                                         @error('cpf')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -96,7 +97,12 @@
                                     <label class="col-md-4 col-form-label text-md-right">Telefone</label>
 
                                     <div class="col-md-6">
-                                        <input id="telefone" type="text" class="form-control" name="telefone" required autocomplete="telefone">
+                                        <input id="telefone" type="text" class="form-control  @error('telefone') is-invalid @enderror" name="telefone" required autocomplete="telefone" value="{{ old('telefone') }}">
+                                        @error('telefone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row">
