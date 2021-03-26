@@ -43,7 +43,7 @@ class StoreAdminRequest extends FormRequest
             'cpf.requered' => "CPF é obrigatório",
             'cpf.min' => "Necessário CPF com  mais de 11 caracteres",
             'cpf.max' => "Necessário CPF com  menos de 14 caracteres",
-            'endereco.requered' => "O edereço é obrigatório,
+            'endereco.requered' => "O endereço é obrigatório",
 
             
         ];

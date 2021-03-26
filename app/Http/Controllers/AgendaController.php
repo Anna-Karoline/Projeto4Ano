@@ -159,7 +159,7 @@ class AgendaController extends Controller
             if (!$colisao and (strtotime($datain) < strtotime($datafi))) {
                 $datain1 =  date('Y-m-d', strtotime($datain));
                 $datafi1 = date('Y-m-d', strtotime($datafi));
-                if(strtotime($datain1) == strtotime($datafi1)){
+                if (strtotime($datain1) == strtotime($datafi1)) {
                     if ($request->post('intervalo') != null) {
                         $dataCalculoIN = date_create($data1);
                         $dataCalculoFI = date_create($data2);
@@ -184,12 +184,10 @@ class AgendaController extends Controller
                         Agendamento::create($data);
                     }
                     return redirect()->route('home');
-                
-                
-                }else{
+                } else {
                     $msg = "Um horário não pode ser em dias diferentes";
                 }
-            }else{
+            } else {
                 $msg = "já existe um horario nesse intervalo ou a Data final é menor do que a data inicial";
             }
             return view('admin.criarHorario', compact('msg'));
@@ -208,38 +206,59 @@ class AgendaController extends Controller
     }
     public function storeProcedimento(StoreUpdateProcedimentoRequest $request)
     {
-        $data = $request->only('name', 'descricao', 'preco');
-        $procedimento = Procedimentos::create($data);
-        return redirect()->route('procedimentos');
+        if (Gate::allows('admin')) {
+            $data = $request->only('name', 'descricao', 'preco');
+            $procedimento = Procedimentos::create($data);
+            return redirect()->route('procedimentos');
+        } else {
+            return redirect()->route('home');
+        }
     }
     public function lista_procedimentos()
     {
-
-        $procedimentos = Procedimentos::get();
-        return view('admin.procedimentos', compact('procedimentos'));
+        if (Gate::allows('admin')) {
+            $procedimentos = Procedimentos::get();
+            return view('admin.procedimentos', compact('procedimentos'));
+        } else {
+            return redirect()->route('home');
+        }
     }
     public function destroyProcedimento($id)
     {
-        $procedimento = Procedimentos::find($id);
-        if (!$procedimento)
-            return redirect()->back();
-        $procedimento->delete();
-        return redirect()->route('procedimentos');
+        if (Gate::allows('admin')) {
+            $procedimento = Procedimentos::find($id);
+            if (!$procedimento)
+                return redirect()->back();
+            $procedimento->delete();
+            return redirect()->route('procedimentos');
+        } else {
+            return redirect()->route('home');
+        }
     }
     public function editProcedimento($id)
     {
-        $procedimento = Procedimentos::find($id);
-        if (!$procedimento)
-            return redirect()->back();
-        return view('admin.editarProcedimento', compact('procedimento'));
+        if (Gate::allows('admin')) {
+            $procedimento = Procedimentos::find($id);
+            if (!$procedimento)
+                return redirect()->back();
+            return view('admin.editarProcedimento', compact('procedimento'));
+        } else {
+            return redirect()->route('home');
+        }
     }
     public function updateProcedimento(StoreUpdateProcedimentoRequest $request, $id)
     {
-        $procedimento = Procedimentos::find($id);
-        if (!$procedimento)
-            return redirect()->back();
-        #$age = Agendamento:
-        $procedimento->update($request->all());
-        return redirect()->route('procedimentos');
+
+
+        if (Gate::allows('admin')) {
+            $procedimento = Procedimentos::find($id);
+            if (!$procedimento)
+                return redirect()->back();
+            #$age = Agendamento:
+            $procedimento->update($request->all());
+            return redirect()->route('procedimentos');
+        } else {
+            return redirect()->route('home');
+        }
     }
 }
