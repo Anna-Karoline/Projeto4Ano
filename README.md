@@ -2,7 +2,7 @@
 
 # SAOD
 
-O SAOD é um sistema de agendamento odontologico, como muitos consultorios ainda utilizam da forma em papel para agendar suas consultas, o SAOD veio para agilizar e facilitar o agendamento dessas consultas. Ele consiste em um sistema em que o administrador(dono do consultorio) colocará horarios disponiveis, e os usuarios(seus clientes) poderão agendar esses horarios para fazerem sua consulta. Dessa forma, os clientes não precisarão ligar para o dono ou até mesmo ter que ir pessoalmente marca uma consulta, alem disso, o sistema guardará os dados das consultas que já aconteceram, assim como os dados do cliente que a fez.
+ O SAOD é um sistema de agendamento odontologico, como muitos consultorios ainda utilizam da forma em papel para agendar suas consultas, o SAOD veio para agilizar e facilitar o agendamento dessas consultas. Ele consiste em um sistema em que o administrador(dono do consultorio) colocará horarios disponiveis, e os usuarios(seus clientes) poderão agendar esses horarios para fazerem sua consulta. Dessa forma, os clientes não precisarão ligar para o dono ou até mesmo ter que ir pessoalmente marca uma consulta, alem disso, o sistema guardará os dados das consultas que já aconteceram, assim como os dados do cliente que a fez.
 
 
 # Layout
@@ -35,7 +35,7 @@ Horários disponiveis            |  Horarios do usuário
 #acesse a pasta do projeto com o terminal/cmd e de o comando:
 $ composer install
 
-#faça uma copia do arquivo .env.example e renomeie-o para .env e configure seus banco de dados nele. Além disso não esqueça de checar se você adcionou a pastar vendor no seu projeto
+#faça uma copia do arquivo .env.example e renomeie-o para .env e configure seu banco de dados nele. Além disso não esqueça de checar se você adcionou a pastar vendor no seu projeto
 
 # agora gere a api_key
 $ php artisan key:generate
