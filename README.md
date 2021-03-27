@@ -84,6 +84,8 @@ $ php artisan migrate
 
 * [**Hernandes Matheus**](https://github.com/Hernandes-Silva) 
 * [**Anna Karoline**](https://github.com/Anna-Karoline) 
+* [**Mayara**](https://github.com/mayaramdrs) 
+
 
 
 ## License
