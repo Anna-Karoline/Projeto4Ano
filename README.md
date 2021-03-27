@@ -38,6 +38,9 @@ $ composer install
 #faça uma copia do arquivo .env.example e renomeie-o para .env e configure seu banco de dados nele.
 #Além disso não esqueça de checar se você adcionou a pastar vendor no seu projeto.
 
+#agora baixe as dependencias do laravel UI
+$ composer require laravel/ui
+
 # agora gere a api_key
 $ php artisan key:generate
 
