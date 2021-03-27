@@ -35,7 +35,8 @@ Horários disponiveis            |  Horarios do usuário
 #acesse a pasta do projeto com o terminal/cmd e de o comando:
 $ composer install
 
-#faça uma copia do arquivo .env.example e renomeie-o para .env e configure seu banco de dados nele. Além disso não esqueça de checar se você adcionou a pastar vendor no seu projeto
+#faça uma copia do arquivo .env.example e renomeie-o para .env e configure seu banco de dados nele.
+#Além disso não esqueça de checar se você adcionou a pastar vendor no seu projeto.
 
 # agora gere a api_key
 $ php artisan key:generate
