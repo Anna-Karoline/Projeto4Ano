@@ -46,7 +46,7 @@ $ php artisan migrate
 
 #inicie o servidor apache no painel do Xampp e acesse: http://localhost/'nome da pasta do projeto'/public/
 
-#Dicas: para criar o primeiro admin, basta você cadastrar um usuario comum, depois ir no phpadmin e mudar a campo admin para true
+#Dicas: para criar o primeiro admin, basta você cadastrar um usuario comum, depois ir no phpadmin e mudar o campo admin para true
 
 
 
