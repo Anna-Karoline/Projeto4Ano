@@ -1,16 +1,26 @@
-<p align="center">
-    <img src="" width='80%'>
-    <img src="" width="80%">
-    
-</p>
-<p align="center">
-</p>
+
 
 # SAOD
 
 O SAOD é um sistema de agendamento odontologico, como muitos consultorios ainda utilizam da forma em papel para agendar suas consultas, o SAOD veio para agilizar e facilitar o agendamento dessas consultas. Ele consiste em um sistema em que o administrador(dono do consultorio) colocará horarios disponiveis, e os usuarios(seus clientes) poderão agendar esses horarios para fazerem sua consulta. Dessa forma, os clientes não precisarão ligar para o dono ou até mesmo ter que ir pessoalmente marca uma consulta, alem disso, o sistema guardará os dados das consultas que já aconteceram, assim como os dados do cliente que a fez.
 
 
+# Layout
+   Login            |  Cadastra-se
+:-------------------------:|:-------------------------:
+![login](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/login.png)  |  ![register](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/register.png)
+
+Horários disponiveis            |  Horarios do usuário
+:-------------------------:|:-------------------------:
+![horarios](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/horarios.png)  |  ![meusHorarios](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/meusHorarios.png)
+
+ Visualizar consultas(Admin)            |  Detalhar Consulta
+:-------------------------:|:-------------------------:
+![adminHorarios](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/adminConsultas.png)  |  ![meusHorarios](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/Detalhar.png)
+
+ Cadastrar consulta        |  Cadastrar procedimentos
+:-------------------------:|:-------------------------:
+![Cadastar consulta](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/cadastrarConsultas.png)  |  ![Cadastar procedimentos](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/cadastrarProcedimentos.png)
 
 ## Pré-requisitos
 
@@ -63,10 +73,10 @@ $ php artisan migrate
 
 
 ## Construido com
-* [GitHub](https://laravel.com/) - o repositório usado pela equipe
-* [PHP](https://laravel.com/) - Linguagem de programação utilizada
-* [Laravel](https://laravel.com/) - o framework web usado
-* [MySQL](https://www.mysql.com/) - o banco de dados usado
+* [GitHub](https://github.com/) - O repositório usado pela equipe
+* [PHP](https://www.php.net/downloads) - Linguagem de programação utilizada
+* [Laravel](https://laravel.com/) - O framework web usado
+* [MySQL](https://www.mysql.com/) - O banco de dados usado
 
 
 ## Authors
@@ -78,17 +88,3 @@ $ php artisan migrate
 ## License
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para detalhes
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
