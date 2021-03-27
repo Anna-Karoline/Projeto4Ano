@@ -1,62 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# SAOD
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+ O SAOD é um sistema de agendamento odontologico, como muitos consultorios ainda utilizam da forma em papel para agendar suas consultas, o SAOD veio para agilizar e facilitar o agendamento dessas consultas. Ele consiste em um sistema em que o administrador(dono do consultorio) colocará horarios disponiveis, e os usuarios(seus clientes) poderão agendar esses horarios para fazerem sua consulta. Dessa forma, os clientes não precisarão ligar para o dono ou até mesmo ter que ir pessoalmente marca uma consulta, alem disso, o sistema guardará os dados das consultas que já aconteceram, assim como os dados do cliente que a fez.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# Layout
+   Login            |  Cadastra-se
+:-------------------------:|:-------------------------:
+![login](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/login.png)  |  ![register](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/register.png)
 
-## Learning Laravel
+Horários disponiveis            |  Horarios do usuário
+:-------------------------:|:-------------------------:
+![horarios](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/horarios.png)  |  ![meusHorarios](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/meusHorarios.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+ Visualizar consultas(Admin)            |  Detalhar Consulta
+:-------------------------:|:-------------------------:
+![adminHorarios](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/adminConsultas.png)  |  ![meusHorarios](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/Detalhar.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+ Cadastrar consulta        |  Cadastrar procedimentos
+:-------------------------:|:-------------------------:
+![Cadastar consulta](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/cadastrarConsultas.png)  |  ![Cadastar procedimentos](https://github.com/Hernandes-Silva/Saod-1/blob/main/imgsGit/cadastrarProcedimentos.png)
 
-## Laravel Sponsors
+## Pré-requisitos
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+ Para executar esse projeto é necessario ter instalado na sua maquina o [PHP 7](https://www.php.net/downloads) e o [Xampp](https://www.apachefriends.org/pt_br/index.html).
 
-### Premium Partners
+### Executando o sistema
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+```bash
 
-## Contributing
+# coloque o projeto na pasta htdocs do Xampp.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#acesse a pasta do projeto com o terminal/cmd e de o comando:
+$ composer install
 
-## Code of Conduct
+#faça uma copia do arquivo .env.example e renomeie-o para .env e configure seu banco de dados nele.
+#Além disso não esqueça de checar se você adcionou a pastar vendor no seu projeto.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# agora gere a api_key
+$ php artisan key:generate
 
-## Security Vulnerabilities
+#faça as migrações do banco
+$ php artisan migrate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#inicie o servidor apache no painel do Xampp e acesse: http://localhost/'nome da pasta do projeto'/public/
+
+#Dicas: para criar o primeiro admin, basta você cadastrar um usuario comum, depois ir no phpadmin e mudar o campo admin para true
+
+
+
+```
+
+---
+## Features
+- Os admin podem:
+   - [x] Ver os horários
+   - [X] Ver informações sobre quem marcou determinado horários
+   - [x] Excluir um horário
+   - [x] Criar um procedimento
+   - [x] Excluir um procedimento
+   - [x] Editar um procedimento
+   - [x] Criar um novo administrador
+   - [x] Editar suas informações e senha
+- Os usuários podem:
+   - [x] Ver os horários
+   - [x] Agendar um horário
+   - [x] Desmarca seu hórario agendado
+   - [x] Editar suas informações e senha
+- os não usuários podem:
+   - [x] cadastra-se
+   
+
+
+## Construido com
+* [GitHub](https://github.com/) - O repositório usado pela equipe
+* [PHP](https://www.php.net/downloads) - Linguagem de programação utilizada
+* [Laravel](https://laravel.com/) - O framework web usado
+* [MySQL](https://www.mysql.com/) - O banco de dados usado
+
+
+## Authors
+
+* [**Hernandes Matheus**](https://github.com/Hernandes-Silva) 
+* [**Anna Karoline**](https://github.com/Anna-Karoline) 
+* [**Mayara**](https://github.com/mayaramdrs) 
+
+
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para detalhes
